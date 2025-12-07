@@ -1,0 +1,40 @@
+import express from 'express';
+import { userController } from './user.controller';
+import auth from '../../middlewares/auth';
+
+import { userRole } from './user.constant';
+import { fileUploader } from '../../helper/fileUploder';
+
+const router = express.Router();
+
+router.post('/create-user', auth(userRole.admin), userController.createUser);
+
+router.get(
+  '/profile',
+  auth(userRole.admin, userRole.player),
+  userController.profile,
+);
+router.put(
+  '/profile',
+  auth(userRole.admin, userRole.player),
+  fileUploader.upload.fields([
+    { name: 'profileImage', maxCount: 1 },
+    { name: 'playingVideo', maxCount: 5 },
+  ]),
+  userController.updateMyProfile,
+);
+
+router.get('/all-user', auth(userRole.admin), userController.getAllUser);
+router.get('/:id', auth(userRole.admin), userController.getUserById);
+router.put(
+  '/:id',
+  auth(userRole.admin),
+  fileUploader.upload.fields([
+    { name: 'profileImage', maxCount: 1 },
+    { name: 'playingVideo', maxCount: 5 },
+  ]),
+  userController.updateUserById,
+);
+router.delete('/:id', auth(userRole.admin), userController.deleteUserById);
+
+export const userRoutes = router;
