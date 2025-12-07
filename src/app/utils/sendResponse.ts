@@ -14,7 +14,7 @@ const sendResponse = <T>(
     statusCode: jsonData.statusCode,
     success: jsonData.success,
     message: jsonData.message,
-    meta: jsonData.meta || null,
+    meta: jsonData.meta,
     data: jsonData.data,
   };
 
