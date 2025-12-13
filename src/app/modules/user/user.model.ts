@@ -120,6 +120,18 @@ const userSchema = new Schema<IUser>(
     subscriptionStatus: {
       type: String,
     },
+
+    // admin profile
+    designation: {
+      type: String,
+    },
+    accessLavel: {
+      type: [String],
+      default: [],
+    },
+    lastLogin: {
+      type: Date,
+    },
   },
   { timestamps: true },
 );

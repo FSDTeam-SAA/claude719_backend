@@ -46,6 +46,9 @@ const loginUser = async (payload: Partial<IUser>) => {
     config.jwt.refreshTokenExpires,
   );
 
+  user.lastLogin = new Date();
+  await user.save();
+
   const { password, ...userWithoutPassword } = user.toObject();
   return { accessToken, refreshToken, user: userWithoutPassword };
 };
