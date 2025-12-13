@@ -35,6 +35,12 @@ export interface IUser {
   subscriptionPlan?: string;
   subscriptionStatus?: string;
 
+
+  // admin profile
+  designation?: string;
+  accessLavel?: string[];
+  lastLogin?: Date;
+
   createdAt: Date;
   updatedAt: Date;
 }
