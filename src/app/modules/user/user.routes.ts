@@ -24,6 +24,18 @@ router.put(
   userController.updateMyProfile,
 );
 
+router.put(
+  '/video-add',
+  auth(userRole.admin, userRole.player),
+  fileUploader.upload.array('playingVideo', 5),
+  userController.videoAdd,
+);
+router.delete(
+  '/video-remove',
+  auth(userRole.admin, userRole.player),
+  userController.removedVideo,
+);
+
 router.get('/all-user', auth(userRole.admin), userController.getAllUser);
 router.get('/:id', auth(userRole.admin), userController.getUserById);
 router.put(

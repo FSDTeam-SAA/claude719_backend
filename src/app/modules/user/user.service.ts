@@ -157,6 +157,37 @@ const updateMyProfile = async (
   return result;
 };
 
+const videoAdd = async (id: string, videos: Express.Multer.File[]) => {
+  const user = await User.findById(id);
+  if (!user) throw new AppError(404, 'User not found');
+  if (videos && videos.length > 0) {
+    const videoUpload = await Promise.all(
+      videos.map(async (video) => {
+        const uploadVideo = await fileUploader.uploadToCloudinary(video);
+        if (!uploadVideo?.url) {
+          throw new AppError(400, 'Failed to upload video');
+        }
+        return uploadVideo.url;
+      }),
+    );
+    user?.playingVideo?.push(...videoUpload);
+    const result = await user.save();
+    if (!result) throw new AppError(400, 'Failed to add video');
+    return result;
+  }
+};
+
+const removedVideo = async (id: string, videoUrls: string[]) => {
+  const user = await User.findById(id);
+  if (!user) throw new AppError(404, 'User not found');
+  user.playingVideo = (user.playingVideo || []).filter(
+    (url) => !videoUrls.includes(url),
+  );
+  const result = await user.save();
+  if (!result) throw new AppError(400, 'Failed to remove video');
+  return result;
+};
+
 export const userService = {
   createUser,
   getAllUser,
@@ -165,4 +196,6 @@ export const userService = {
   deleteUserById,
   profile,
   updateMyProfile,
+  videoAdd,
+  removedVideo,
 };
