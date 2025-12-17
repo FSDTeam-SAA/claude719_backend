@@ -114,6 +114,29 @@ const updateMyProfile = catchAsync(async (req, res) => {
   });
 });
 
+const videoAdd = catchAsync(async (req, res) => {
+  const videoFiles = req.files as Express.Multer.File[];
+  console.log(req.user.id)
+  const result = await userService.videoAdd(req.user.id, videoFiles);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Videos added successfully',
+    data: result,
+  });
+});
+
+const removedVideo = catchAsync(async (req, res) => {
+  const { playingVideo } = req.body;
+  const result = await userService.removedVideo(req.user.id, playingVideo);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Videos removed successfully',
+    data: result,
+  });
+});
+
 export const userController = {
   createUser,
   getAllUser,
@@ -122,4 +145,6 @@ export const userController = {
   deleteUserById,
   profile,
   updateMyProfile,
+  videoAdd,
+  removedVideo,
 };
