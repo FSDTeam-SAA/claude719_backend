@@ -10,19 +10,23 @@ import Payment from '../payment/payment.model';
 const stripe = new Stripe(config.stripe.secretKey!);
 
 const createSubscription = async (payload: ISubscription) => {
+
   const subscription = await Subscription.findOne({ name: payload.numberOfGames });
   if (subscription) throw new AppError(400, 'Subscription already exists');
+  
   const result = await Subscription.create(payload);
   if (!result) throw new AppError(400, 'Failed to create Subscription');
+
   return result;
 };
 
 const getAllSubscription = async (params: any, options: IOption) => {
+
   const { page, limit, skip, sortBy, sortOrder } = pagination(options);
   const { searchTerm, year, ...filterData } = params;
 
   const andCondition: any[] = [];
-  const userSearchableFields = ['name', 'type', 'features', 'status'];
+  const userSearchableFields = ['numberOfGames', 'interval', 'features', 'status'];
 
   if (searchTerm) {
     andCondition.push({
@@ -77,24 +81,31 @@ const getAllSubscription = async (params: any, options: IOption) => {
 };
 
 const getSingleSubscription = async (id: string) => {
+
   const result = await Subscription.findById(id);
   if (!result) throw new AppError(400, 'Failed to get single Subscription');
+  
   return result;
 };
 
 const updateSubscription = async (id: string, payload: ISubscription) => {
+
   const result = await Subscription.findByIdAndUpdate(id, payload, { new: true });
   if (!result) throw new AppError(400, 'Failed to update Subscription');
+
   return result;
 };
 
 const deleteSubscription = async (id: string) => {
+
   const result = await Subscription.findByIdAndDelete(id);
   if (!result) throw new AppError(400, 'Failed to delete Subscription');
+
   return result;
 };
 
 const activeSubscription = async (id: string) => {
+
   await Subscription.updateMany({}, { status: 'inactive' });
   const result = await Subscription.findByIdAndUpdate(
     id,

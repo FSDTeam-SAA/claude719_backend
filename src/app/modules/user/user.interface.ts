@@ -32,8 +32,11 @@ export interface IUser {
   gpa?: string;
   playingVideo?: string[];
 
-  subscriptionPlan?: string;
-  subscriptionStatus?: string;
+  isSubscription?: boolean;
+  subscription?: Types.ObjectId;
+  subscriptionExpiry?: Date;
+  // subscriptionPlan?: string;
+  // subscriptionStatus?: string;
 
 
   // admin profile

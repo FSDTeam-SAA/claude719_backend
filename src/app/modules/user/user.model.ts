@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { IUser } from './user.interface';
 import bcrypt from 'bcryptjs';
+import { string } from 'zod';
 
 const userSchema = new Schema<IUser>(
   {
@@ -114,11 +115,23 @@ const userSchema = new Schema<IUser>(
       default: [],
     },
 
-    subscriptionPlan: {
-      type: String,
+    // subscriptionPlan: {
+    //   type: String,
+    // },
+    // subscriptionStatus: {
+    //   type: String,
+    // },
+    isSubscription: {
+      type: Boolean,
+      default: false,
     },
-    subscriptionStatus: {
-      type: String,
+    subscription: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Subscription',
+      default: null,
+    },
+    subscriptionExpiry: {
+      type: Date,
     },
 
     // admin profile

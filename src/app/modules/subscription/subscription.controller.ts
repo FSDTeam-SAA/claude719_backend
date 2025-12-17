@@ -4,7 +4,9 @@ import sendResponse from '../../utils/sendResponse';
 import { SubscriptionService } from './subscription.service';
 
 const createSubscription = catchAsync(async (req, res) => {
+
   const result = await SubscriptionService.createSubscription(req.body);
+
   sendResponse(res, {
     statusCode: 201,
     success: true,
@@ -14,15 +16,18 @@ const createSubscription = catchAsync(async (req, res) => {
 });
 
 const getAllSubscription = catchAsync(async (req, res) => {
+
   const filters = pick(req.query, [
     'searchTerm',
-    'name',
-    'type',
+    'numberOfGames',
+    'interval',
     'features',
     'status',
   ]);
+
   const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
   const result = await SubscriptionService.getAllSubscription(filters, options);
+
   sendResponse(res, {
     statusCode: 200,
     success: true,
@@ -33,8 +38,10 @@ const getAllSubscription = catchAsync(async (req, res) => {
 });
 
 const getSingleSubscription = catchAsync(async (req, res) => {
+
   const { id } = req.params;
   const result = await SubscriptionService.getSingleSubscription(id!);
+
   sendResponse(res, {
     statusCode: 200,
     success: true,
@@ -44,8 +51,10 @@ const getSingleSubscription = catchAsync(async (req, res) => {
 });
 
 const updateSubscription = catchAsync(async (req, res) => {
+
   const { id } = req.params;
   const result = await SubscriptionService.updateSubscription(id!, req.body);
+
   sendResponse(res, {
     statusCode: 200,
     success: true,
@@ -54,8 +63,10 @@ const updateSubscription = catchAsync(async (req, res) => {
   });
 });
 const deleteSubscription = catchAsync(async (req, res) => {
+
   const { id } = req.params;
   const result = await SubscriptionService.deleteSubscription(id!);
+
   sendResponse(res, {
     statusCode: 200,
     success: true,
@@ -65,8 +76,10 @@ const deleteSubscription = catchAsync(async (req, res) => {
 });
 
 const activeSubscription = catchAsync(async (req, res) => {
+
   const { id } = req.params;
   const result = await SubscriptionService.activeSubscription(id!);
+
   sendResponse(res, {
     statusCode: 200,
     success: true,
@@ -76,10 +89,12 @@ const activeSubscription = catchAsync(async (req, res) => {
 });
 
 const paySubscription = catchAsync(async (req, res) => {
+
   const result = await SubscriptionService.paySubscription(
     req.user?.id,
     req.params.id!,
   );
+
   sendResponse(res, {
     statusCode: 200,
     success: true,
