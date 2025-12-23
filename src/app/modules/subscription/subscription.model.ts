@@ -4,7 +4,6 @@ import { ISubscription } from "./subscription.interface";
 const SubscriptionSchema = new mongoose.Schema <ISubscription>({
   numberOfGames: {
     type: Number,
-    required: true
   },
   price: {
     type: Number,

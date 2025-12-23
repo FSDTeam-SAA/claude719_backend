@@ -11,8 +11,8 @@ const stripe = new Stripe(config.stripe.secretKey!);
 
 const createSubscription = async (payload: ISubscription) => {
 
-  const subscription = await Subscription.findOne({ name: payload.numberOfGames });
-  if (subscription) throw new AppError(400, 'Subscription already exists');
+  // const subscription = await Subscription.findOne({ name: payload.numberOfGames });
+  // if (subscription) throw new AppError(400, 'Subscription already exists');
   
   const result = await Subscription.create(payload);
   if (!result) throw new AppError(400, 'Failed to create Subscription');

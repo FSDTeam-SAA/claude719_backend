@@ -3,7 +3,7 @@ import { userRoutes } from '../modules/user/user.routes';
 import { authRoutes } from '../modules/auth/auth.routes';
 import { contactRouter } from '../modules/contact/contact.routes';
 import { subscriptionRouter } from '../modules/subscription/subscription.routes';
-import path from 'path';
+import { transferhistoryRouter } from '../modules/transferhistory/transferhistory.routes';
 
 const router = Router();
 
@@ -23,6 +23,10 @@ const moduleRoutes = [
   {
     path: '/subscription',
     route: subscriptionRouter,
+  },
+  {
+    path: '/transferhistory',
+    route: transferhistoryRouter,
   },
 ];
 

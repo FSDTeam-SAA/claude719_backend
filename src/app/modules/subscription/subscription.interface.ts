@@ -1,7 +1,7 @@
 import { Types } from 'mongoose';
 
 export interface ISubscription {
-  numberOfGames: {
+  numberOfGames?: {
     type: number;
     required:true
   },
@@ -10,7 +10,7 @@ export interface ISubscription {
     required:true
   },
   currency: string;
-  interval: 'monthly' | 'yearly';
+  interval?: 'monthly' | 'yearly';
   features: string[];
   isActive: boolean;
   title: string;

@@ -28,9 +28,8 @@ const userSchema = new Schema<IUser>(
     },
     role: {
       type: String,
-      enum: ['player', 'admin'],
+      enum: ['player', 'admin', 'gk'],
       required: true,
-      default: 'player',
     },
     profileImage: {
       type: String,
@@ -76,14 +75,10 @@ const userSchema = new Schema<IUser>(
       type: String,
     },
     league: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'League',
-      default: null,
+      type: String,
     },
     category: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Category',
-      default: null,
+      type: String,
     },
     foot: {
       type: String,
@@ -103,7 +98,7 @@ const userSchema = new Schema<IUser>(
     inSchoolOrCollege: {
       type: Boolean,
     },
-    satAct: {
+    institute: {
       type: String,
     },
     gpa: {
@@ -114,6 +109,7 @@ const userSchema = new Schema<IUser>(
       type: [String],
       default: [],
     },
+    
 
     // subscriptionPlan: {
     //   type: String,

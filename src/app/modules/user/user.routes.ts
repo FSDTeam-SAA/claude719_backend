@@ -11,12 +11,12 @@ router.post('/create-user', auth(userRole.admin), userController.createUser);
 
 router.get(
   '/profile',
-  auth(userRole.admin, userRole.player),
+  auth(userRole.admin, userRole.player,userRole.gk),
   userController.profile,
 );
 router.put(
   '/profile',
-  auth(userRole.admin, userRole.player),
+  auth(userRole.admin, userRole.player,userRole.gk),
   fileUploader.upload.fields([
     { name: 'profileImage', maxCount: 1 },
     { name: 'playingVideo', maxCount: 5 },

@@ -1,6 +1,7 @@
 import AppError from '../../error/appError';
 import { fileUploader } from '../../helper/fileUploder';
 import pagination, { IOption } from '../../helper/pagenation';
+import { userRole } from './user.constant';
 
 import { IUser } from './user.interface';
 import User from './user.model';
@@ -131,6 +132,10 @@ const updateMyProfile = async (
   if (!user) {
     throw new AppError(404, 'User not found');
   }
+
+  if (user.role !== userRole.admin && !user.isSubscription) {
+    throw new AppError(403, 'Please subscribe to access this feature');
+  }
   if (file) {
     const uploadProfile = await fileUploader.uploadToCloudinary(file);
     if (!uploadProfile?.url) {
@@ -149,6 +154,11 @@ const updateMyProfile = async (
       }),
     );
     payload.playingVideo = videoUpload;
+  }
+  if (user.role !== userRole.admin && payload.inSchoolOrCollege === true) {
+    if (!payload.institute || !payload.gpa) {
+      throw new AppError(400, 'Institute and GPA are required');
+    }
   }
   const result = await User.findByIdAndUpdate(id, payload, { new: true });
   if (!result) {
