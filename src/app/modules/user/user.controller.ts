@@ -100,7 +100,7 @@ const updateMyProfile = catchAsync(async (req, res) => {
   const profileImageFile = files?.profileImage?.[0];
   const videoFiles = files?.playingVideo;
   const fromData = req.body.data ? JSON.parse(req.body.data) : req.body;
-  const result = await userService.updateUserById(
+  const result = await userService.updateMyProfile(
     req.user.id,
     fromData,
     profileImageFile,

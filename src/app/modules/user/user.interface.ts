@@ -5,7 +5,7 @@ export interface IUser {
   lastName?: string;
   email: string;
   password: string;
-  role: 'player' | 'admin';
+  role: 'player' | 'admin' | 'gk';
   profileImage?: string;
   phone?: string;
   otp?: string;
@@ -21,14 +21,14 @@ export interface IUser {
   birthdayPlace?: string;
   citizenship?: string;
   currentClub?: string;
-  league?: Types.ObjectId; //object id of league
-  category?: Types.ObjectId;
+  league?: string; //object id of league
+  category?: string;
   foot?: string;
   position?: string[];
   agent?: string;
   socialMedia?: string[];
   inSchoolOrCollege: boolean; // Yes / No
-  satAct?: string; // Optional
+  institute?: string;
   gpa?: string;
   playingVideo?: string[];
 
@@ -37,7 +37,6 @@ export interface IUser {
   subscriptionExpiry?: Date;
   // subscriptionPlan?: string;
   // subscriptionStatus?: string;
-
 
   // admin profile
   designation?: string;
