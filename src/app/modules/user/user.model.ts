@@ -1,7 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { IUser } from './user.interface';
 import bcrypt from 'bcryptjs';
-import { string } from 'zod';
 
 const userSchema = new Schema<IUser>(
   {
