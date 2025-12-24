@@ -83,8 +83,7 @@ const userSchema = new Schema<IUser>(
       type: String,
     },
     position: {
-      type: [String],
-      default: [],
+      type: String,
     },
     agent: {
       type: String,
