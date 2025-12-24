@@ -16,7 +16,7 @@ export interface IUser {
   // user profile
   gender?: 'male' | 'female' | 'other';
   hight?: string;
-  weight?: number;
+  weight?: string;
   dob?: string;
   birthdayPlace?: string;
   citizenship?: string;

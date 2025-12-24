@@ -5,6 +5,7 @@ import { contactRouter } from '../modules/contact/contact.routes';
 import { subscriptionRouter } from '../modules/subscription/subscription.routes';
 import { transferhistoryRouter } from '../modules/transferhistory/transferhistory.routes';
 import { nationalRouter } from '../modules/national/national.routes';
+import { ratingRouter } from '../modules/rating/rating.routes';
 
 const router = Router();
 
@@ -32,6 +33,10 @@ const moduleRoutes = [
   {
     path: '/national',
     route: nationalRouter,
+  },
+  {
+    path: '/rating',
+    route: ratingRouter,
   },
 ];
 

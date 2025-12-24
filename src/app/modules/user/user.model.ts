@@ -59,7 +59,7 @@ const userSchema = new Schema<IUser>(
       type: String,
     },
     weight: {
-      type: Number,
+      type: String,
     },
     dob: {
       type: String,
