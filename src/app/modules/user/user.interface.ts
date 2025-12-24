@@ -24,7 +24,7 @@ export interface IUser {
   league?: string; //object id of league
   category?: string;
   foot?: string;
-  position?: string[];
+  position?: string;
   agent?: string;
   socialMedia?: string[];
   inSchoolOrCollege: boolean; // Yes / No
