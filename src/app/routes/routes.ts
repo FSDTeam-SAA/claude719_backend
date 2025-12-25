@@ -6,6 +6,7 @@ import { subscriptionRouter } from '../modules/subscription/subscription.routes'
 import { transferhistoryRouter } from '../modules/transferhistory/transferhistory.routes';
 import { nationalRouter } from '../modules/national/national.routes';
 import { ratingRouter } from '../modules/rating/rating.routes';
+import { newsletterRouter } from '../modules/newsletter/newsletter.routes';
 
 const router = Router();
 
@@ -37,6 +38,10 @@ const moduleRoutes = [
   {
     path: '/rating',
     route: ratingRouter,
+  },
+  {
+    path: '/newsletter',
+    route: newsletterRouter,
   },
 ];
 

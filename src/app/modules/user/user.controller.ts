@@ -15,11 +15,13 @@ const createUser = catchAsync(async (req, res) => {
 
 const getAllUser = catchAsync(async (req, res) => {
   const filters = pick(req.query, [
-    'searchTerm',
-    'role',
     'firstName',
     'lastName',
     'email',
+    'role',
+    'citizenship',
+    'position',
+    'category',
   ]);
   const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
   const result = await userService.getAllUser(filters, options);
@@ -116,7 +118,7 @@ const updateMyProfile = catchAsync(async (req, res) => {
 
 const videoAdd = catchAsync(async (req, res) => {
   const videoFiles = req.files as Express.Multer.File[];
-  console.log(req.user.id)
+  console.log(req.user.id);
   const result = await userService.videoAdd(req.user.id, videoFiles);
   sendResponse(res, {
     statusCode: 200,
