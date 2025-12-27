@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import app from './app';
 import config from './app/config';
-import "../src/app/helper/cronjobHandler";
+import "./app/helper/cronjobHandler"
 
 const PORT = config.port;
 

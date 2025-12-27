@@ -5,6 +5,7 @@ import notFoundError from './app/error/notFoundError';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import router from './app/routes/routes';
 import webHookHandlers from './app/helper/webhookHandler';
+// import './app/helper/cronjobHandler';
 const app = express();
 
 // Middlewares
