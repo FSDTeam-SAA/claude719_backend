@@ -51,9 +51,11 @@ const getAllRating = async (userId: string, options: IOption) => {
   const total = await Rating.countDocuments(whereCondition);
   return {
     data: result,
-    total,
-    page,
-    limit,
+    meta: {
+      page,
+      limit,
+      total,
+    },
   };
 };
 
